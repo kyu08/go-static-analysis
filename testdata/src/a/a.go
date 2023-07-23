@@ -1,12 +1,10 @@
 package a
 
+import "fmt"
+
 func F() {
-	var gopher int
-	print(gopher)
+	hoge := "str"
+	fmt.Printf("hoge: %v\n", hoge)
+	res := 1 + 2 // want "int found" "int found"
+	print(res)   // want "int found"
 }
-
-func unusedFunc() {} // want `"unusedFunc" is unused`
-func PublicFunc() {}
-
-func main() {}
-func init() {}

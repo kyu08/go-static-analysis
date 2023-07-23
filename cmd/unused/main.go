@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/kyu08/unused"
+	"github.com/kyu08/findint"
 	"golang.org/x/tools/go/analysis/unitchecker"
 )
 
-func main() { unitchecker.Main(unused.Analyzer) }
+func main() { unitchecker.Main(findint.Analyzer) }
