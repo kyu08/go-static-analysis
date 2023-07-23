@@ -1,5 +1,21 @@
-module github.com/kyu08/go-playground
+module github.com/kyu08/unused
 
-go 1.18
+go 1.19
 
-require golang.org/x/sync v0.1.0
+require (
+	github.com/gostaticanalysis/ident v0.0.1
+	github.com/gostaticanalysis/testutil v0.4.0
+	github.com/samber/lo v1.38.1
+	golang.org/x/tools v0.11.0
+)
+
+require (
+	github.com/hashicorp/go-version v1.2.1 // indirect
+	github.com/otiai10/copy v1.2.0 // indirect
+	github.com/tenntenn/modver v1.0.1 // indirect
+	github.com/tenntenn/text/transform v0.0.0-20200319021203-7eef512accb3 // indirect
+	golang.org/x/exp v0.0.0-20220303212507-bbda1eaf7a17 // indirect
+	golang.org/x/mod v0.12.0 // indirect
+	golang.org/x/sys v0.10.0 // indirect
+	golang.org/x/text v0.3.3 // indirect
+)

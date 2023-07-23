@@ -1,3 +1,3 @@
 .PHONY: run
 run:
-		@go run .
+		@go run ./cmd/unused/main.go
