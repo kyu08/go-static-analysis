@@ -1,19 +1,20 @@
-package findint
+package shortvar
 
 import (
-	"go/ast"
 	"go/types"
 
 	"golang.org/x/tools/go/analysis"
 	"golang.org/x/tools/go/analysis/passes/inspect"
-	"golang.org/x/tools/go/ast/inspector"
 )
 
-const doc = "findint is ..."
+const (
+	doc               = "shortvar is ..."
+	shortestVarLength = 3
+)
 
 // Analyzer is ...
 var Analyzer = &analysis.Analyzer{
-	Name: "findint",
+	Name: "shortvar",
 	Doc:  doc,
 	Run:  run,
 	Requires: []*analysis.Analyzer{
@@ -21,17 +22,18 @@ var Analyzer = &analysis.Analyzer{
 	},
 }
 
-// run int型の式を見つける
+// run 3文字以下のパッケージ変数を探す
 func run(pass *analysis.Pass) (any, error) {
-	inspect := pass.ResultOf[inspect.Analyzer].(*inspector.Inspector)
-	inspect.Preorder(nil, func(n ast.Node) {
-		expr, _ := n.(ast.Expr)
-		typ := pass.TypesInfo.TypeOf(expr)
+	for _, n := range pass.Pkg.Scope().Names() {
+		if len(n) <= shortestVarLength {
+			obj := pass.Pkg.Scope().Lookup(n)
+			_, ok := obj.(*types.Var)
+			if ok {
+				pass.Reportf(obj.Pos(), "%s should be more than 3 characters", n)
+			}
 
-		if types.Identical(typ, types.Typ[types.Int]) {
-			pass.Reportf(n.Pos(), "int found")
 		}
-	})
+	}
 
 	return nil, nil
 }

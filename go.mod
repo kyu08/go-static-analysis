@@ -1,9 +1,8 @@
-module github.com/kyu08/findint
+module github.com/kyu08/shortvar
 
-go 1.19
+go 1.20
 
 require (
-	github.com/gostaticanalysis/ident v0.0.1
 	github.com/gostaticanalysis/testutil v0.4.0
 	golang.org/x/tools v0.11.0
 )
